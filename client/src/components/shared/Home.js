@@ -1,19 +1,19 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Header, Container } from 'semantic-ui-react'
-// import { Img, Body } from '../../style/Styledcomponents'
+import { Img, Body } from '../style/Styledcomponents'
 import { Component } from 'react'
 import { useState, useEffect } from 'react'
-// import camp3 from "../images/camp3.jpg";
+import camp4 from "../images/camp4.jpg";
 
 const Home = (props) => {
 
       return (
         <Container>
-          {/* <div>
-            <Img src={camp3} alt="homepage" />
-          </div> */}
-          <Header>Home</Header>
+          <div>
+            <Img src={camp4} alt="homepage" />
+          </div>
+          <Header>Welcome to Happy Camper</Header>
         </Container>
       );
   }
