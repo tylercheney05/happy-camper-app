@@ -24,7 +24,7 @@ const App = () => (
           <ProtectedRoute exact path='/profile' component={Profile} />
           <ProtectedRoute exact path='/campgrounds' component={Campgrounds} />
           <ProtectedRoute exact path='/campgrounds/:id' component={Campground} />
-          <ProtectedRoute exact path='/reservations' component={Reservations} />
+          <ProtectedRoute exact path='/users/:user_id/reservations' component={Reservations} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
