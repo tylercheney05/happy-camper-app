@@ -1,15 +1,15 @@
-import React from 'react';
-import Review from './Review'
+// import React from 'react';
+// import Review from './Review'
 
-const ReviewList = ({reviews}) => (
-  <div>
-    {reviews.map (r =>
-      <Review
-        key={r.id}
-        {...r}
-      />
-      )}
-  </div>
-)
+// const ReviewList = ({reviews}) => (
+//   <div>
+//     {review.map (r =>
+//       <Review
+//         key={r.id}
+//         {...r}
+//       />
+//       )}
+//   </div>
+// )
 
-export default ReviewList
+// export default ReviewList

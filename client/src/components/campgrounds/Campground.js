@@ -20,10 +20,22 @@ class Campground extends Component {
       return this.state.reviews.map( review => <Review key={review.id} {...review} />)
     }
 
+    // updateCampground = (campgroundId, campground) => {
+    //   axios.put(`/api/campground/${campgroundId}`, { campground })
+    //     .then( res => {
+    //       const campgrounds = this.state.campgrounds.map( c => {
+    //         if (c.id === id)
+    //           return res.data
+    //         return c;
+    //       });
+    //       this.setState({ campgrounds })
+    //     })
+    // }
+
   
     render () {
     const { reviews } = this.state
-    const { campgroundId, name, location, description, sites, price } = this.props.location.state
+    const { campgroundId, name, location, description, sites, price, updateCampground } = this.props.location.state
     return (
       <>
         <h1>{campgroundId}</h1>
@@ -32,14 +44,7 @@ class Campground extends Component {
         <p>Description: {description}</p>
         <p>Available Sites: {sites}</p>
         <p>Price: ${price}</p>
-        <br></br>
-        <Button
-          size="mini"
-          color="red"
-          onClick={() => deleteCampground(campgroundId)}
-        >
-          <Icon name="trash"></Icon>Delete Campground
-        </Button>
+        
         {/* <Reviews reviewId={id} /> */}
         <Header>Reviews</Header>
         { this.state.reviews ? this.renderReviews() : '...loading'}
