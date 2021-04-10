@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     resources :campgrounds do
       resources :reviews
     end
-end
+  end
 end
