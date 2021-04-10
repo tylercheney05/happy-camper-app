@@ -50,6 +50,13 @@ const Navbar = ({ location, user, handleLogout, history }) => {
             active={location.pathname === '/'}
           />
         </Link>
+        <Link to='/campgrounds'>
+          <Menu.Item
+            name='campgrounds'
+            id='campgrounds'
+            active={location.pathname === '/campgrounds'}
+          />
+        </Link>
         { rightNavItem() }
       </Menu>
     </>
