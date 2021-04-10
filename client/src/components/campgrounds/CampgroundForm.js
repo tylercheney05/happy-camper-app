@@ -43,7 +43,7 @@ class CampgroundForm extends Component {
           placeholder="Add location of Campground"
           required
           name="location"
-          value={this.state.Campground}
+          value={this.state.campground}
           onChange={this.handleChange}
         />
         <Form.Input
