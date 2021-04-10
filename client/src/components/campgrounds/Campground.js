@@ -2,10 +2,10 @@ import { Component } from "react";
 import Review from '../reviews/Review'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Header } from 'semantic-ui-react'
+import { Header, Button, Icon } from 'semantic-ui-react'
 
 class Campground extends Component {
-  state = { reviews: [] }
+  state = { reviews: [] };
 
     componentDidMount () {
         const { campgroundId } = this.props.location.state
@@ -32,7 +32,15 @@ class Campground extends Component {
         <p>Description: {description}</p>
         <p>Available Sites: {sites}</p>
         <p>Price: ${price}</p>
-        {/* <Reviews reviewId={id} /> */} 
+        <br></br>
+        <Button
+          size="mini"
+          color="red"
+          onClick={() => deleteCampground(campgroundId)}
+        >
+          <Icon name="trash"></Icon>Delete Campground
+        </Button>
+        {/* <Reviews reviewId={id} /> */}
         <Header>Reviews</Header>
         { this.state.reviews ? this.renderReviews() : '...loading'}
       </>
