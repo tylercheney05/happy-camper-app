@@ -38,12 +38,11 @@ class Campground extends Component {
     const { campgroundId, name, location, description, sites, price, updateCampground } = this.props.location.state
     return (
       <>
-        <h1>{campgroundId}</h1>
         <h1>{name}</h1>
-        <p>Location: {location}</p>
-        <p>Description: {description}</p>
-        <p>Available Sites: {sites}</p>
-        <p>Price: ${price}</p>
+        <h2>{location}</h2>
+        <h3>Description: {description}</h3>
+        <h4>Available Sites: {sites} </h4>
+        <h4>Price: ${price}</h4>
         
         {/* <Reviews reviewId={id} /> */}
         <Header>Reviews</Header>

@@ -3,18 +3,25 @@ import { Link } from 'react-router-dom'
 import ReviewList from './ReviewList'
 import { Card, Button, Header } from 'semantic-ui-react'
 import { Container } from 'semantic-ui-react'
-import { CardContainer, FormContainer, HeaderText, SubText } from '../style/Styledcomponents'
+import { CardContainer, FormContainer, HeaderText, SubText, Text } from '../style/Styledcomponents'
 import { Component } from 'react'
 
 const Review = ({title, body, rating}) => {
     return (
-        <>
-            <h3>{title}</h3>
-            <h4>{body}</h4>
-            <h4>Rating: {rating}</h4>
-
-        </>
-    )
+      <>
+        
+          <Card>
+            <Card.Content>
+              <Card.Header>{title}</Card.Header>
+              <Card.Meta>Rating: {rating}</Card.Meta>
+              <Card.Description>
+                {body}
+              </Card.Description>
+            </Card.Content>
+          </Card>
+       
+      </>
+    );
 }
 // class Review extends Component {
 

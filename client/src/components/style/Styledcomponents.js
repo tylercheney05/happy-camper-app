@@ -15,3 +15,7 @@ export const CardContainer = styled(Container)`
 export const FormContainer = styled(Container)`
   padding: 0px 110px;
 `;
+export const Text = styled.text`
+  text-align: center;
+  text-color: lightgreen;
+`

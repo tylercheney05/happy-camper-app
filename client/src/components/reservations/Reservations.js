@@ -27,13 +27,13 @@ const Reservations = ({user}) => {
   }, [])
 
   const renderReservations = () => {
-    return this.state.reservations.map(reservation => <Reservation key={reservation.id} {...reservation} />)
+    return reservations.map(reservation => <Reservation key={reservation.id} {...reservation} />)
   }
 
   return (
     <Container>
     <Header>Reservations</Header>
-        { this.state.reservations }
+        { renderReservations()}
     </Container>
   )
 }
