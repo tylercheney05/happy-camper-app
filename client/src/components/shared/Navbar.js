@@ -58,12 +58,15 @@ const Navbar = ({ location, user, handleLogout, history }) => {
           />
         </Link>
         {/* <Link to={{
-          pathname: `/user/${user.id}/reservations`
+          pathname: '/reservations',
+          state: {
+            userId: user.id
+          }
         }}>
           <Menu.Item
-            name='campgrounds'
-            id='campgrounds'
-            active={location.pathname === '/campgrounds'}
+            name='reservations'
+            id='reservations'
+            active={location.pathname === '/reservations'}
           />
         </Link> */}
         { rightNavItem() }

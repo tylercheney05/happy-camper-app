@@ -9,9 +9,9 @@ import { Component } from 'react'
 const Review = ({title, body, rating}) => {
     return (
         <>
-            <h1>{title}</h1>
-            <h3>{body}</h3>
-            <h4>{rating}</h4>
+            <h3>{title}</h3>
+            <h4>{body}</h4>
+            <h4>Rating: {rating}</h4>
 
         </>
     )
