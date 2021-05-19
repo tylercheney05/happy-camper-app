@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { initMiddleware } from 'devise-axios';
 import AuthProvider from "./providers/AuthProvider";
+import ReservationProvider from './providers/ReservationsProvider'
 import "semantic-ui-css/semantic.min.css";
 
 initMiddleware();
@@ -13,9 +14,11 @@ initMiddleware();
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ReservationProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReservationProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

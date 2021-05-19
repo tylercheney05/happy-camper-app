@@ -61,13 +61,7 @@ const Campgrounds = (props) => {
             }}>
               View Campground</Link>
           </Card.Content>
-          <Button
-          size="mini"
-          color="red"
-          onClick={() => deleteCampground(campground.id)}
-        >
-          <Icon name="trash"></Icon>Delete Campground
-        </Button>
+          <Button>Make a Reservation</Button>
         </Card>
       </Segment>
     ))

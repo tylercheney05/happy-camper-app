@@ -1,14 +1,15 @@
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { Menu } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useRouteMatch, withRouter } from 'react-router-dom';
 const Navbar = ({ location, user, handleLogout, history }) => {
   const rightNavItem = () => {
+    // console.log(user.user.id)
     if (user) {
       return (
         <Menu.Menu position='right'>
           <Link to='/profile'>
             <Menu.Item
-              name='profile'
+              name={user.user.email}
               id='profile'
               active={location.pathname === '/profile'}
             />
@@ -58,15 +59,15 @@ const Navbar = ({ location, user, handleLogout, history }) => {
           />
         </Link>
         <Link to={{
-          pathname: `/users/1/reservations`,
+          // pathname: `users/${user.user.id}/reservations`,
           state: {
-            user: user
+            // user_id: user.user.id
           }
         }}>
           <Menu.Item
             name='reservations'
             id='reservations'
-            active={location.pathname === `/users/1/reservations`}
+            // active={location.pathname === `/users/${user.user.id}/reservations`}
           />
         </Link>
         { rightNavItem() }

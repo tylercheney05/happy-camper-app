@@ -1,28 +1,14 @@
 import { Header, Image, Card, Button, Icon, Segment, Container, List } from 'semantic-ui-react'
 import { Component } from 'react'
 import { useState, useEffect, useContext } from 'react'
-import AuthContext from '../../providers/AuthProvider'
+import { ReservationConsumer } from '../../providers/ReservationsProvider'
 import axios from 'axios'
 import Reservation from './Reservation'
 
 const Reservations = ({match}) => {
-  // state = { reservations: [] };
-
-  //   componentDidMount () {
-  //     const { user.id } = this.props.location.state
-  //     axios.get(`/api/users/${user.id}/reservations`)
-  //         .then( res => {
-  //           this.setState({ reservations: res.data })
-  //         })
-  //         .catch( err => console.log(err))
-  // }
-
-  const auth = useContext(AuthContext)
-
   const [reservations, setReservations] = useState([])
-  
+
   useEffect ( () => {
-    debugger
     axios.get(`/api/users/${match.params.id}/reservations`)
       .then( res => {
         setReservations(res.data)
@@ -30,7 +16,12 @@ const Reservations = ({match}) => {
   }, [])
 
   const renderReservations = () => {
-    return reservations.map(reservation => <Reservation key={reservation.id} {...reservation} />)
+    return reservations.map(
+      // reservation => <Reservation key={reservation.id} {...reservation} />
+      reservation => (
+        <p>{reservation.id}</p>
+      )
+      )
   }
 
   return (
@@ -41,11 +32,10 @@ const Reservations = ({match}) => {
   )
 }
 
-// const ConnectedReservations = (props) => (
-//   <AuthConsumer>
-//     { auth =>
-//       <Reservations { ...props } { ...auth } />
-//     }
-//   </AuthConsumer>
-// )
-export default Reservations
+const ConnectedReservations = (props) => (
+  <ReservationConsumer>
+    { reservation => <Reservations {...props} {...reservation} />}
+  </ReservationConsumer>
+)
+
+export default ConnectedReservations
