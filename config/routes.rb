@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :campgrounds do
       resources :reviews
     end
+
+    get 'userReservations/:id', to: 'reservations#userReservations'
   end
 end
