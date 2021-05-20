@@ -4,12 +4,13 @@ import { useState, useEffect, useContext } from 'react'
 import { ReservationConsumer } from '../../providers/ReservationsProvider'
 import axios from 'axios'
 import Reservation from './Reservation'
+import { AuthConsumer } from '../../providers/AuthProvider'
 
-const Reservations = ({match}) => {
+const Reservations = ({match, user}) => {
   const [reservations, setReservations] = useState([])
 
   useEffect ( () => {
-    axios.get(`/api/users/${match.params.id}/reservations`)
+    axios.get(`/api/userReservations/${user.user.id}`)
       .then( res => {
         setReservations(res.data)
       })
@@ -17,11 +18,9 @@ const Reservations = ({match}) => {
 
   const renderReservations = () => {
     return reservations.map(
-      // reservation => <Reservation key={reservation.id} {...reservation} />
-      reservation => (
-        <p>{reservation.id}</p>
+      reservation => ( <Reservation key={reservation.id} {...reservation} />
       )
-      )
+    )
   }
 
   return (
@@ -38,4 +37,10 @@ const ConnectedReservations = (props) => (
   </ReservationConsumer>
 )
 
-export default ConnectedReservations
+const AuthConnectedReservations = (props) => (
+  <AuthConsumer>
+    { auth => <ConnectedReservations {...props} {...auth} />}
+  </AuthConsumer>
+)
+
+export default AuthConnectedReservations

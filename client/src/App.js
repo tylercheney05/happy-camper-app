@@ -11,6 +11,7 @@ import Profile from './components/auth/Profile'
 import Campgrounds from './components/campgrounds/Campgrounds'
 import Campground from './components/campgrounds/Campground'
 import Reservations from './components/reservations/Reservations'
+import MakeReservation from './components/reservations/MakeReservation'
 
 const App = () => (
   <>
@@ -24,8 +25,8 @@ const App = () => (
           <ProtectedRoute exact path='/profile' component={Profile} />
           <ProtectedRoute exact path='/campgrounds' component={Campgrounds} />
           <ProtectedRoute exact path='/campgrounds/:id' component={Campground} />
-          <ProtectedRoute exact path='/users/:id/reservations' component={Reservations} />
-          <ProtectedRoute exact path='/campgrounds/:id/reservations/new' component={Reservations} />
+          <ProtectedRoute exact path='/reservations' component={Reservations} />
+          <ProtectedRoute exact path='/reservations/:id/new' component={MakeReservation} />
           <Route component={NoMatch} />
         </Switch>
       </Container>

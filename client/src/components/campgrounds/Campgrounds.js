@@ -61,7 +61,11 @@ const Campgrounds = (props) => {
             }}>
               View Campground</Link>
           </Card.Content>
-          <Button>Make a Reservation</Button>
+          <Link to={{
+            pathname: `/reservations/${campground.id}/new`
+          }}>
+            <Button>Make a Reservation</Button>
+          </Link>
         </Card>
       </Segment>
     ))

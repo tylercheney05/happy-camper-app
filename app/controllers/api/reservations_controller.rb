@@ -28,6 +28,11 @@ class Api::ReservationsController < ApplicationController
       @reservation.destroy
       render json: { message: 'Reservation Deleted!' }
     end
+
+    def userReservations
+      @user = User.find(params[:id])
+      render json: @user.reservations
+    end
   
     private 
       def reservation_params

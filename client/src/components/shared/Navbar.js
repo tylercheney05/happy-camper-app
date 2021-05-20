@@ -59,7 +59,7 @@ const Navbar = ({ location, user, handleLogout, history }) => {
           />
         </Link>
         <Link to={{
-          // pathname: `users/${user.user.id}/reservations`,
+          pathname: `/reservations`,
           state: {
             // user_id: user.user.id
           }
