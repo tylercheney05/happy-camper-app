@@ -20,7 +20,7 @@ const Reservations = ({match, user}) => {
     return reservations.map(
       reservation => ( <Reservation key={reservation.id} {...reservation} />
       )
-      )
+    )
   }
 
   return (
