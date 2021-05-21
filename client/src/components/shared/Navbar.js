@@ -9,7 +9,7 @@ const Navbar = ({ location, user, handleLogout, history }) => {
         <Menu.Menu position='right'>
           <Link to='/profile'>
             <Menu.Item
-              name={user.user.email}
+              name={user.user.name}
               id='profile'
               active={location.pathname === '/profile'}
             />
