@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       resources :reviews
     end
 
+    
     get 'userReservations/:id', to: 'reservations#userReservations'
   end
+  get '/parks', to: 'parks#get_parks'
+  resources :pets
 end

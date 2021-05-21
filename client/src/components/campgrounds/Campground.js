@@ -3,6 +3,7 @@ import Review from '../reviews/Review'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Header, Button, Icon } from 'semantic-ui-react'
+import Parks from '../parks/Parks'
 
 class Campground extends Component {
   state = { reviews: [] };
@@ -47,6 +48,7 @@ class Campground extends Component {
         {/* <Reviews reviewId={id} /> */}
         <Header>Reviews</Header>
         { this.state.reviews ? this.renderReviews() : '...loading'}
+        <Parks/>
       </>
     );
   }
