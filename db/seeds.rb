@@ -2,13 +2,15 @@ rating_array = (1..5).to_a
 sites_array = (5..30).to_a
 price_array = (0..75).to_a
 boolean_array = (0..1).to_a
+user_number = 0
 
 5.times do
   user = User.create(
     name: Faker::FunnyName.name,
-    email: Faker::Internet.email,
+    email: "test#{user_number}@email.com",
     password: 'password'
   )
+  user_number = user_number + 1
   campground = Campground.create(
     name: Faker::Mountain.name,
     location: Faker::Address.city + ', ' + Faker::Address.state_abbr,

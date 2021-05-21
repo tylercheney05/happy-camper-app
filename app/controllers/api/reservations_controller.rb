@@ -1,12 +1,13 @@
 class Api::ReservationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_campground, only: [ :create]
 
     def index
       render json: current_user.reservations.all
     end
   
     def create 
-      @reservation = current_user.reservations.new(reservation_params)
+      @reservation = @campground.reservations.new(reservation_params)
       if @reservation.save
         render json: @reservation
       else
@@ -36,7 +37,11 @@ class Api::ReservationsController < ApplicationController
   
     private 
       def reservation_params
-        params.require(:reservation).permit(:start_date, :end_date, :notes)
+        params.require(:reservation).permit(:start_date, :end_date, :notes, :user_id, :campground_id)
+      end
+
+      def set_campground
+        @campground = Campground.find(params[:campground_id])
       end
   
 end

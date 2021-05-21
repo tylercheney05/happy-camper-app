@@ -6,18 +6,17 @@ export const ReservationConsumer = ReservationContext.Consumer;
 const ReservationProvider = ({ children }) => {
   const [reservations, setReservations] = useState([])
 
-  // const getReservations = (user_id) => {
-  //   useEffect ( () => {
-  //     axios.get(`/api/users/${user_id}/reservations`)
-  //       .then( res => {
-  //         setReservations(res.data)
-  //       })
-  //   }, [])
-  // }
+  const makeReservation = (campground_id, reservation) => {
+    axios.post(`/api/campgrounds/${campground_id}/reservations`, { reservation })
+    .then( res => {
+      setReservations([...reservations, res.data])
+    })
+    .catch( err => console.log(err))
+  }
 
   return(
     <ReservationContext.Provider value={{
-      // getReservations
+      makeReservation
     }}>
       { children }
     </ReservationContext.Provider>
