@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     get 'userReservations/:id', to: 'reservations#userReservations'
   end
   get '/parks', to: 'parks#get_parks'
-  resources :pets
+  get '/campgrounds', to: 'campgrounds#get_campgrounds'
+  resources :parks
+  # resources :campgrounds
 end

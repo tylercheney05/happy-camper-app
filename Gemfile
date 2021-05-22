@@ -30,6 +30,7 @@ gem 'rest-client'
 group :development, :test do
   gem 'pry'
   gem 'faker'
+  gem "dotenv-rails"
 end
 
 group :development do
