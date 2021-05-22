@@ -8,14 +8,20 @@ import CampgroundForm from './CampgroundForm'
 // import camp3 from "../images/camp3.jpg";
 
 const Campgrounds = (props) => {
-
   const [campgrounds, setCampgrounds] = useState([])
   
+  // useEffect ( () => {
+  //   axios.get('/api/campgrounds')
+  //     .then( res => {
+  //       setCampgrounds(res.data)
+  //     })
+  // }, [])
+
   useEffect ( () => {
-    axios.get('/api/campgrounds')
-      .then( res => {
-        setCampgrounds(res.data)
-      })
+    axios.get('/campgrounds')
+    .then( res => {
+      setCampgrounds(res.data.data)
+    })
   }, [])
 
   // const updateCampground = (id, campground) => {
@@ -39,14 +45,18 @@ const Campgrounds = (props) => {
         this.setState({ campgrounds: campgrounds.filter(c => c.id !== id) })
       })
       .catch( err => console.log(err))
-  }
+    }
   
   const renderCampgrounds = () => {
+    // console.log(campgrounds[0].addresses[0].city)
     return campgrounds.map( campground => (
       <Segment key={campground.id}>
         <Card>
           <Card.Content>
             <Card.Header>{campground.name}</Card.Header>
+              {
+              campground.addresses.length > 0 ? <p>{campground.addresses[0].city}</p>: ''
+            }
             <Link to={{
               pathname: `/campgrounds/${campground.id}`,
               state: {
