@@ -27,7 +27,7 @@ user_number = 0
       end_date: Faker::Date.in_date_period,
       notes: Faker::Lorem.paragraph,
       user_id: user.id,
-      campground_id: campground.id
+      # campground_id: campground.id
     )
     Review.create(
       title: Faker::Name.name,

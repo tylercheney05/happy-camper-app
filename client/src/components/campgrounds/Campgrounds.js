@@ -50,34 +50,32 @@ const Campgrounds = (props) => {
   const renderCampgrounds = () => {
     // console.log(campgrounds[0].addresses[0].city)
     return campgrounds.map( campground => (
-      <Segment key={campground.id}>
-        <Card>
-          <Card.Content>
-            <Card.Header>{campground.name}</Card.Header>
-              {
-              campground.addresses.length > 0 ? <p>{campground.addresses[0].city}</p>: ''
-            }
-            <Link to={{
-              pathname: `/campgrounds/${campground.id}`,
-              state: {
-                campgroundId: campground.id,
-                name: campground.name,
-                location: campground.location,
-                description: campground.description,
-                sites: campground.sites,
-                price: campground.price,
-                // updateCampground: this.updateCampground
-                }
-            }}>
-              View Campground</Link>
-          </Card.Content>
+      <Card key={campground.id}>
+        <Card.Content>
+          <Card.Header>{campground.name}</Card.Header>
+            {
+            campground.addresses.length > 0 ? <p>{campground.addresses[0].city}, {campground.addresses[0].stateCode}</p>: ''
+          }
           <Link to={{
-            pathname: `/reservations/${campground.id}/new`
+            pathname: `/campgrounds/${campground.id}`,
+            state: {
+              campgroundId: campground.id,
+              name: campground.name,
+              location: campground.location,
+              description: campground.description,
+              sites: campground.sites,
+              price: campground.price,
+              // updateCampground: this.updateCampground
+              }
           }}>
-            <Button>Make a Reservation</Button>
-          </Link>
-        </Card>
-      </Segment>
+            View Campground</Link>
+        </Card.Content>
+        <Link to={{
+          pathname: `/reservations/${campground.id}/new`
+        }}>
+          <Button>Make a Reservation</Button>
+        </Link>
+      </Card>
     ))
   }
     return (

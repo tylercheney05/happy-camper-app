@@ -6,12 +6,12 @@ import { AuthConsumer } from '../../providers/AuthProvider'
 import { ReservationConsumer } from '../../providers/ReservationsProvider'
 
 const MakeReservation = ({match, user, makeReservation}) => {
-  const [reservation, setReservation] = useState({ start_date: '', end_date: '', notes: '', user_id: user.user.id})
+  const [reservation, setReservation] = useState({ start_date: '', end_date: '', notes: '', user_id: user.user.id, campground_id: match.params.id})
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    makeReservation(match.params.id,reservation)
-    setReservation({start_date: '', end_date: '', notes: '', user_id: user.user.id})
+    makeReservation(user.user.id,reservation)
+    setReservation({start_date: '', end_date: '', notes: '', user_id: user.user.id, campground_id: match.params.id})
   }
 
   return(
