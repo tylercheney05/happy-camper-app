@@ -7,7 +7,7 @@ import CampgroundList from './CampgroundList'
 import CampgroundForm from './CampgroundForm'
 // import camp3 from "../images/camp3.jpg";
 
-const Campgrounds = (props) => {
+const Campgrounds = ({props, match}) => {
   const [campgrounds, setCampgrounds] = useState([])
   
   // useEffect ( () => {
@@ -18,7 +18,7 @@ const Campgrounds = (props) => {
   // }, [])
 
   useEffect ( () => {
-    axios.get('/campgrounds')
+    axios.get(`/campgrounds/${match.params.state_code}`)
     .then( res => {
       setCampgrounds(res.data.data)
     })
