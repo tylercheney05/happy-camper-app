@@ -5,7 +5,8 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.date :end_date
       t.text :notes
       t.belongs_to :user, null: false, foreign_key: true
-      t.belongs_to :campground, null: false, foreign_key: true
+      # t.belongs_to :campground, null: false, foreign_key: true
+      t.string :campground_id
 
       t.timestamps
     end

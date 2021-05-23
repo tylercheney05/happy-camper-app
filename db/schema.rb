@@ -33,10 +33,9 @@ ActiveRecord::Schema.define(version: 2021_04_10_162304) do
     t.date "end_date"
     t.text "notes"
     t.bigint "user_id", null: false
-    t.bigint "campground_id", null: false
+    t.string "campground_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["campground_id"], name: "index_reservations_on_campground_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -80,7 +79,6 @@ ActiveRecord::Schema.define(version: 2021_04_10_162304) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "reservations", "campgrounds"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "campgrounds"
 end

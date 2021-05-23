@@ -1,13 +1,12 @@
 class Api::ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_campground, only: [ :create]
 
     def index
       render json: current_user.reservations.all
     end
   
     def create 
-      @reservation = @campground.reservations.new(reservation_params)
+      @reservation = current_user.reservations.new(reservation_params)
       if @reservation.save
         render json: @reservation
       else
