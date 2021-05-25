@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Header, Container, Form, Button } from 'semantic-ui-react'
+import { Header, Container, Form, Button, Grid, Divider } from 'semantic-ui-react'
 import { Img, Body } from '../style/Styledcomponents'
 import { Component } from 'react'
 import { useState, useEffect } from 'react'
@@ -76,26 +76,59 @@ const Home = (props) => {
       setCampgroundValue('')
     }
       return (
-        <Container>
-          <div>
+        <Container style={{width: '100%'}}>
+          {/* <div>
             <Img src={camp4} alt="homepage" />
-          </div>
-          <Header>Welcome to Happy Camper</Header>
-          <Form onSubmit={handleSubmit}>
-            <Form.Select
-              fluid
-              label='State'
-              options={options}
-              placeholder='Choose State'
-              value={campgroundValue}
-              onChange={(e, { value }) => setCampgroundValue(value)}
-            />
-            <Link to={{
-              pathname: `/campgrounds/${campgroundValue}`
-            }}>
-              <Button type="submit">Submit</Button>
-            </Link>
-          </Form>
+          </div> */}
+          <Header
+            as='h1'
+            // inverted
+            textAlign='center'
+            color='black'
+            size='large'
+            style={{
+              fontFamily: 'QuartzoBold, serif',
+              opacity: '0.75',
+              backgroundImage: `url(${camp4})`,
+              backgroundSize: 'cover',
+              height: '250px',
+              paddingTop: '100px',
+              fontSize: '60px',
+              color: 'white',
+              fontWeight: 'bold',
+              webkitTextStroke: '2px black'
+            }}
+          >Welcome to Happy Camper</Header>
+          <Divider hidden />
+          <Divider hidden />
+          <Grid centered>
+            <Form 
+              onSubmit={handleSubmit}
+            >
+              <h2>Pick state where you'd like to camp</h2>
+              <Form.Select
+                fluid
+                options={options}
+                placeholder='Choose State'
+                value={campgroundValue}
+                onChange={(e, { value }) => setCampgroundValue(value)}
+                style={{
+                  width: '400px',
+                  fontSize: '20px'
+                }}
+              />
+              <Link to={{
+                pathname: `/campgrounds/${campgroundValue}`
+              }}>
+                <Button 
+                  type="submit"
+                  style={{
+                    fontSize: '20px'
+                  }}
+                >Search</Button>
+              </Link>
+            </Form>
+          </Grid>
         </Container>
       );
   }

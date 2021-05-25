@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Header, Image, Card, Button, Icon, Segment, Container, List } from 'semantic-ui-react'
+import { Header, Image, Card, Button, Icon, Segment, Container, List, Grid } from 'semantic-ui-react'
 import { Component } from 'react'
 import { useState, useEffect } from 'react'
 import CampgroundList from './CampgroundList'
 import CampgroundForm from './CampgroundForm'
-// import camp3 from "../images/camp3.jpg";
+import campDefault from '../images/camping-default.jpeg'
+import Map from '../map/Map'
 
 const Campgrounds = ({props, match}) => {
   const [campgrounds, setCampgrounds] = useState([])
@@ -16,6 +17,12 @@ const Campgrounds = ({props, match}) => {
   //       setCampgrounds(res.data)
   //     })
   // }, [])
+
+  const location = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
+  }
 
   useEffect ( () => {
     axios.get(`/campgrounds/${match.params.state_code}`)
@@ -53,11 +60,14 @@ const Campgrounds = ({props, match}) => {
       <Card key={campground.id}>
         <Card.Content>
           <Card.Header>{campground.name}</Card.Header>
+          {
+            campground.images.length > 0 ? <Image src={campground.images[0].url} /> : <Image src={campDefault} />
+          }
             {
             campground.addresses.length > 0 ? <p>{campground.addresses[0].city}, {campground.addresses[0].stateCode}</p>: ''
           }
           <Link to={{
-            pathname: `/campgrounds/${campground.id}`,
+            pathname: `/campgrounds/${match.params.state_code}/${campground.id}`,
             state: {
               campgroundId: campground.id,
               name: campground.name,
@@ -81,6 +91,7 @@ const Campgrounds = ({props, match}) => {
     return (
       <Container>
         <Header>Campgrounds</Header>
+        <Map location={location} zoomLevel={17}/>
         <List>
           { renderCampgrounds() }
         </List>
