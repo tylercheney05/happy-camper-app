@@ -17,19 +17,17 @@ const App = () => (
   <>
     <Navbar />
       <FetchUser>
-      <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <ProtectedRoute exact path='/profile' component={Profile} />
           <ProtectedRoute exact path='/campgrounds/:state_code' component={Campgrounds} />
-          <ProtectedRoute exact path='/campgrounds/:id' component={Campground} />
+          <ProtectedRoute exact path='/campgrounds/:state_code/:id' component={Campground} />
           <ProtectedRoute exact path='/reservations' component={Reservations} />
           <ProtectedRoute exact path='/reservations/:id/new' component={MakeReservation} />
           <Route component={NoMatch} />
         </Switch>
-      </Container>
     </FetchUser>
   </>
 )

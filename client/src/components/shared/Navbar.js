@@ -65,7 +65,7 @@ const Navbar = ({ location, user, handleLogout, history }) => {
           }
         }}>
           <Menu.Item
-            name='reservations'
+            name='myReservations'
             id='reservations'
             // active={location.pathname === `/users/${user.user.id}/reservations`}
           />
