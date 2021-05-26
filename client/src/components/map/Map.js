@@ -3,8 +3,7 @@ import GoogleMap from 'google-map-react'
 import './map.css'
 import LocationPin from './LocationPin'
 
-const Map = ({ location, zoomLevel }) => {
-  const API_KEY = process.env.GOOGLE_MAPS_API_KEY
+const Map = ({ location, zoomLevel, campgrounds }) => {
   
   const markerStyle = {
     height: '50px',
@@ -23,19 +22,31 @@ const Map = ({ location, zoomLevel }) => {
     </div>
   );
 
+  const renderMarkers = () => {
+    return campgrounds.map( campground => (
+      <Marker
+        // title={campground.name}
+        lat={campground.latitude}
+        lng={campground.longitude}
+      />
+    ))
+  }
+
+  console.log(campgrounds)
   return(
     <div className="google-map">
       <GoogleMap
-        bootstrapURLKeys={{ key: API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         center={{ lat: 5.6219868, lng: -0.1733074 }}
         zoom={14}
       >
-        <Marker
+        {renderMarkers()}
+        {/* <Marker
         title={'Current Location'}
         lat={5.6219868}
         lng={-0.1733074}
       >
-        </Marker>
+        </Marker> */}
       </GoogleMap>
     </div>
   )
