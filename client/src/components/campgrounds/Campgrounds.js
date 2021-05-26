@@ -91,7 +91,7 @@ const Campgrounds = ({props, match}) => {
     return (
       <Container>
         <Header>Campgrounds</Header>
-        <Map location={location} zoomLevel={17}/>
+        <Map location={location} zoomLevel={17} campgrounds={campgrounds}/>
         <List>
           { renderCampgrounds() }
         </List>
