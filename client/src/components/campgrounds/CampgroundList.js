@@ -1,23 +1,68 @@
 import React from 'react';
 import Campground from './Campground'
-import { Card } from 'semantic-ui-react'
-import { Img, Body, CardInfoContainer } from "../style/Styledcomponents"
+import campDefault from '../images/camping-default.jpeg'
+import { Link } from 'react-router-dom'
+import { Header, Image, Card, Button, Icon, Segment, Container, List, Grid } from 'semantic-ui-react'
 
-const CampgroundList = ({campgrounds, deleteCampground, updateCampground }) => (
-  
-  <Card.Group centered>
-    {campgrounds.map (c =>
-      <Card>
-        <Campground
-          key={c.id}
-        
-          {...c}
-          deleteCampground={deleteCampground}
-          updateCampground={updateCampground}
-        />
-      </Card>
-      )}
-  </Card.Group>
-)
+const CampgroundList = ({ campground, stateCode }) => {
+  const campgroundState = {
+    campgroundId: campground.id,
+    name: campground.name,
+    location: campground.location,
+    description: campground.description,
+    sites: campground.sites,
+    price: campground.price,
+    // updateCampground: this.updateCampground
+  }
+
+  const pathname = `/campgrounds/${stateCode}/${campground.id}`
+
+  return(
+  <Card key={campground.id} style={{width: '100%', padding: '10px'}}>
+    <Grid>
+      <Grid.Column width={6}>
+        {
+          campground.images.length > 0 ? 
+          <Link to={{
+            pathname: pathname,
+            state: campgroundState
+          }}>
+            <Image src={campground.images[0].url} />
+          </Link> : 
+          <Link to={{
+            pathname: pathname,
+            state: campgroundState
+          }}>
+            <Image src={campDefault} />
+          </Link>
+        }
+      </Grid.Column>
+      <Grid.Column width={10}>
+        <Link to={{
+          pathname: pathname,
+          state: campgroundState
+        }}>
+          <Card.Header style={{fontWeight: 'bold', fontSize: '16px', lineHeight: '2.0'}}>{campground.name}</Card.Header>
+        </Link>
+          {
+          campground.addresses.length > 0 ? 
+            <Card.Meta>
+              {campground.addresses[0].city}, {campground.addresses[0].stateCode}
+            </Card.Meta>
+            : ''
+        }
+        <div style={{position: 'absolute', bottom: '20px', left: '10px'}}>
+          <Link to={{
+            pathname: `/reservations/${campground.id}/new`
+          }}>
+            <Button style={{verticalAlign: 'bottom'}}>Make a Reservation</Button>
+          </Link>
+        </div>
+
+      </Grid.Column>
+    </Grid>
+    </Card>
+  )
+}
 
 export default CampgroundList

@@ -1,11 +1,9 @@
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import { Header, Image, Card, Button, Icon, Segment, Container, List, Grid } from 'semantic-ui-react'
 import { Component } from 'react'
 import { useState, useEffect } from 'react'
 import CampgroundList from './CampgroundList'
 import CampgroundForm from './CampgroundForm'
-import campDefault from '../images/camping-default.jpeg'
 import Map from '../map/Map'
 
 const Campgrounds = ({props, match}) => {
@@ -57,45 +55,23 @@ const Campgrounds = ({props, match}) => {
   const renderCampgrounds = () => {
     // console.log(campgrounds[0].addresses[0].city)
     return campgrounds.map( campground => (
-      <Card key={campground.id}>
-        <Card.Content>
-          <Card.Header>{campground.name}</Card.Header>
-          {
-            campground.images.length > 0 ? <Image src={campground.images[0].url} /> : <Image src={campDefault} />
-          }
-            {
-            campground.addresses.length > 0 ? <p>{campground.addresses[0].city}, {campground.addresses[0].stateCode}</p>: ''
-          }
-          <Link to={{
-            pathname: `/campgrounds/${match.params.state_code}/${campground.id}`,
-            state: {
-              campgroundId: campground.id,
-              name: campground.name,
-              location: campground.location,
-              description: campground.description,
-              sites: campground.sites,
-              price: campground.price,
-              // updateCampground: this.updateCampground
-              }
-          }}>
-            View Campground</Link>
-        </Card.Content>
-        <Link to={{
-          pathname: `/reservations/${campground.id}/new`
-        }}>
-          <Button>Make a Reservation</Button>
-        </Link>
-      </Card>
+      <CampgroundList campground={campground} stateCode={match.params.state_code}/>
     ))
   }
     return (
-      <Container>
+      <>
         <Header>Campgrounds</Header>
-        <Map location={location} zoomLevel={17} campgrounds={campgrounds}/>
-        <List>
-          { renderCampgrounds() }
-        </List>
-      </Container>
+        <Grid style={{paddingLeft: '15px'}}>
+          <Grid.Column width={6}>
+            <List>
+              { renderCampgrounds() }
+            </List>
+          </Grid.Column>
+          <Grid.Column width={10} style={{position: 'fixed', right: '0'}}>
+            <Map location={location} zoomLevel={17} campgrounds={campgrounds}/>
+          </Grid.Column>
+        </Grid>
+      </>
     );
   }
 
