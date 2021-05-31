@@ -2,7 +2,7 @@ import { Component } from "react";
 import Review from '../reviews/Review'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Header, Button, Icon, Container, Segment } from 'semantic-ui-react'
+import { Header, Button, Icon, Container, Segment, Image } from 'semantic-ui-react'
 import Parks from '../parks/Parks'
 
 const Campground = ({ location }) => {
@@ -35,32 +35,83 @@ const Campground = ({ location }) => {
 
     // const { reviews } = this.state
     // const { campgroundId, name, location, description, sites, price, updateCampground } = this.props.location.state
+
+    const renderFees = () => {
+      return location.state.fees.map( fee => (
+        <>
+          <h4>{fee.title}</h4>
+          <p>{fee.description}</p>
+          <p>${fee.cost}</p>
+          <hr/>
+        </>
+      ))
+    }
+
+    const renderImages = () => {
+      return location.state.images.map( image => (
+        <Image src={image.url}/>
+      ))
+    }
     return (
       <Container>
         <h1 style={{textAlign: 'center'}}>{location.state.name}</h1>
-        <h5 style={{textAlign: 'center'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}</h5>
+        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line1}</h5>
+        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line2}</h5>
+        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line3}</h5>
+        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}  {location.state.addresses[0].postalCode}</h5>
         <Segment>
           <h3>Description</h3>
           <p>{location.state.desc}</p>
+          <p>{location.state.audioDesc}</p>
+          <p>For more information visit <a href={location.state.regulationsurl} target="_blank">{location.state.regulationsurl}</a></p>
+        </Segment>
+        <Segment>
+          <h3>Reservation Info</h3>
+          <p>{location.state.reservationInfo}</p>
         </Segment>
         <Segment>
           <h3>Amenities</h3>
           <h4>Toilets</h4>
           <p>{location.state.amenities.toilets[0]}</p>
+          <hr/>
           <h4>Showers</h4>
           <p>{location.state.amenities.showers[0]}</p>
+          <hr/>
           <h4>Potable Water</h4>
           <p>{location.state.amenities.potableWater[0]}</p>
+          <hr/>
           <h4>Laundry</h4>
           <p>{location.state.amenities.laundry}</p>
         </Segment>
-        <h4>Available Sites: {location.state.sites} </h4>
-        <h4>Price: ${location.state.price}</h4>
-        
+        <Segment>
+          <h3>Availability</h3>
+          <h4>Available Sites</h4>
+          <p>{location.state.campsites.totalSites}</p>
+          {renderFees()}
+        </Segment>
+        <Segment>
+          <h3>Photos</h3>
+          <Image.Group size='medium'>
+            {renderImages()}
+          </Image.Group>
+        </Segment>
+        <Segment>
+          <h3>Contact Info</h3>
+          <h4>Phone Number</h4>
+          { location.state.contacts.phoneNumbers.length > 0 ?
+            <p>{location.state.contacts.phoneNumbers[0].phoneNumber}</p>
+            : ''
+          }
+          <h4>Email</h4>
+          { location.state.contacts.emailAddresses.length > 0 ?
+            <p>{location.state.contacts.emailAddresses[0].emailAddress}</p>
+            : ''
+          }
+        </Segment>
         {/* <Reviews reviewId={id} /> */}
         {/* <Header>Reviews</Header>
         { this.state.reviews ? this.renderReviews() : '...loading'} */}
-        <Parks/>
+        {/* <Parks/> */}
       </Container>
     )
   }

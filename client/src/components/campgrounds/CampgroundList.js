@@ -10,9 +10,15 @@ const CampgroundList = ({ campground, stateCode }) => {
     name: campground.name,
     addresses: campground.addresses,
     desc: campground.description,
+    audioDesc: campground.audioDescription,
     sites: campground.sites,
-    price: campground.price,
-    amenities: campground.amenities
+    fees: campground.fees,
+    amenities: campground.amenities,
+    reservationInfo: campground.reservationInfo,
+    images: campground.images,
+    campsites: campground.campsites,
+    contacts: campground.contacts,
+    regulationsurl: campground.regulationsurl
     // updateCampground: this.updateCampground
   }
 
