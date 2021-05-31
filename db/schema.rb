@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_05_31_212851) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
-    t.string "price"
+    t.float "price"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 

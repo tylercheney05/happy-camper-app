@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Header, Button, Icon, Container, Segment, Image } from 'semantic-ui-react'
 import Parks from '../parks/Parks'
+import { Link } from 'react-router-dom'
 
 const Campground = ({ location }) => {
   // state = { reviews: [] };
@@ -42,6 +43,19 @@ const Campground = ({ location }) => {
           <h4>{fee.title}</h4>
           <p>{fee.description}</p>
           <p>${fee.cost}</p>
+          { location.state.numberOfSitesReservable > 0 ?
+            <Link to={{
+              pathname: `/reservations/${location.state.campgroundId}/new`,
+              state: {
+                title: fee.title,
+                price: fee.cost,
+                name: location.state.name
+              }
+            }}>
+              <Button style={{verticalAlign: 'bottom'}}>Make a Reservation</Button>
+            </Link>
+            : ''
+          }
           <hr/>
         </>
       ))
@@ -54,11 +68,13 @@ const Campground = ({ location }) => {
     }
     return (
       <Container>
-        <h1 style={{textAlign: 'center'}}>{location.state.name}</h1>
-        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line1}</h5>
-        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line2}</h5>
-        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].line3}</h5>
-        <h5 style={{textAlign: 'center', lineHeight: '0'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}  {location.state.addresses[0].postalCode}</h5>
+        <div style={{textAlign: 'center', lineHeight: '0'}}>
+          <h1>{location.state.name}</h1>
+          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line1}</h5>
+          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line2}</h5>
+          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line3}</h5>
+          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}  {location.state.addresses[0].postalCode}</h5>
+        </div>
         <Segment>
           <h3>Description</h3>
           <p>{location.state.desc}</p>
@@ -85,8 +101,12 @@ const Campground = ({ location }) => {
         </Segment>
         <Segment>
           <h3>Availability</h3>
-          <h4>Available Sites</h4>
+          <h4>Total Available Sites</h4>
           <p>{location.state.campsites.totalSites}</p>
+          <h4>Reservable Sites</h4>
+          <p>{location.state.numberOfSitesReservable}</p>
+          <h4>First Come, First Serve Sites</h4>
+          <p>{location.state.numberOfSitesFirstComeFirstServe}</p>
           {renderFees()}
         </Segment>
         <Segment>

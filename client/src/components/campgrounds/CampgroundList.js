@@ -18,7 +18,9 @@ const CampgroundList = ({ campground, stateCode }) => {
     images: campground.images,
     campsites: campground.campsites,
     contacts: campground.contacts,
-    regulationsurl: campground.regulationsurl
+    regulationsurl: campground.regulationsurl,
+    numberOfSitesReservable: campground.numberOfSitesReservable,
+    numberOfSitesFirstComeFirstServe: campground.numberOfSitesFirstComeFirstServe
     // updateCampground: this.updateCampground
   }
 
@@ -58,13 +60,6 @@ const CampgroundList = ({ campground, stateCode }) => {
             </Card.Meta>
             : ''
         }
-        <div style={{position: 'absolute', bottom: '20px', left: '10px'}}>
-          <Link to={{
-            pathname: `/reservations/${campground.id}/new`
-          }}>
-            <Button style={{verticalAlign: 'bottom'}}>Make a Reservation</Button>
-          </Link>
-        </div>
 
       </Grid.Column>
     </Grid>
