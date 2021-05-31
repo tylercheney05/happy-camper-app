@@ -8,10 +8,11 @@ const CampgroundList = ({ campground, stateCode }) => {
   const campgroundState = {
     campgroundId: campground.id,
     name: campground.name,
-    location: campground.location,
-    description: campground.description,
+    addresses: campground.addresses,
+    desc: campground.description,
     sites: campground.sites,
     price: campground.price,
+    amenities: campground.amenities
     // updateCampground: this.updateCampground
   }
 
@@ -42,7 +43,7 @@ const CampgroundList = ({ campground, stateCode }) => {
           pathname: pathname,
           state: campgroundState
         }}>
-          <Card.Header style={{fontWeight: 'bold', fontSize: '16px', lineHeight: '2.0'}}>{campground.name}</Card.Header>
+          <Card.Header style={{fontWeight: 'bold', fontSize: '16px', paddingBottom: '5px'}}>{campground.name}</Card.Header>
         </Link>
           {
           campground.addresses.length > 0 ? 
