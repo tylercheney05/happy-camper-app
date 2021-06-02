@@ -6,11 +6,6 @@ Rails.application.routes.draw do
     resources :users do
       resources :reservations
     end
-  
-    # resources :campgrounds do
-    #   resources :reviews
-    # end
-
     
     get 'userReservations/:id', to: 'reservations#userReservations'
   end

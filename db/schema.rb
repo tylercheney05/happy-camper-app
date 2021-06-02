@@ -15,19 +15,6 @@ ActiveRecord::Schema.define(version: 2021_05_31_212851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "campgrounds", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.text "description"
-    t.integer "sites"
-    t.float "price"
-    t.boolean "shower"
-    t.boolean "bathroom"
-    t.boolean "hookups"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -39,16 +26,6 @@ ActiveRecord::Schema.define(version: 2021_05_31_212851) do
     t.string "title"
     t.float "price"
     t.index ["user_id"], name: "index_reservations_on_user_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.integer "rating"
-    t.bigint "campground_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["campground_id"], name: "index_reviews_on_campground_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,5 +59,4 @@ ActiveRecord::Schema.define(version: 2021_05_31_212851) do
   end
 
   add_foreign_key "reservations", "users"
-  add_foreign_key "reviews", "campgrounds"
 end
