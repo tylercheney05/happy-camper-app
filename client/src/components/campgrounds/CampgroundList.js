@@ -10,9 +10,17 @@ const CampgroundList = ({ campground, stateCode }) => {
     name: campground.name,
     addresses: campground.addresses,
     desc: campground.description,
+    audioDesc: campground.audioDescription,
     sites: campground.sites,
-    price: campground.price,
-    amenities: campground.amenities
+    fees: campground.fees,
+    amenities: campground.amenities,
+    reservationInfo: campground.reservationInfo,
+    images: campground.images,
+    campsites: campground.campsites,
+    contacts: campground.contacts,
+    regulationsurl: campground.regulationsurl,
+    numberOfSitesReservable: campground.numberOfSitesReservable,
+    numberOfSitesFirstComeFirstServe: campground.numberOfSitesFirstComeFirstServe
     // updateCampground: this.updateCampground
   }
 
@@ -52,13 +60,6 @@ const CampgroundList = ({ campground, stateCode }) => {
             </Card.Meta>
             : ''
         }
-        <div style={{position: 'absolute', bottom: '20px', left: '10px'}}>
-          <Link to={{
-            pathname: `/reservations/${campground.id}/new`
-          }}>
-            <Button style={{verticalAlign: 'bottom'}}>Make a Reservation</Button>
-          </Link>
-        </div>
 
       </Grid.Column>
     </Grid>

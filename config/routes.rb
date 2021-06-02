@@ -7,15 +7,16 @@ Rails.application.routes.draw do
       resources :reservations
     end
   
-    resources :campgrounds do
-      resources :reviews
-    end
+    # resources :campgrounds do
+    #   resources :reviews
+    # end
 
     
     get 'userReservations/:id', to: 'reservations#userReservations'
   end
   get '/parks', to: 'parks#get_parks'
   get '/campgrounds/:stateCode', to: 'campgrounds#get_campgrounds'
+  get '/reservations/:campground_id', to: 'campgrounds#get_campground'
   resources :parks
   # resources :campgrounds
 end
