@@ -6,12 +6,12 @@ import { AuthConsumer } from '../../providers/AuthProvider'
 import { ReservationConsumer } from '../../providers/ReservationsProvider'
 
 const MakeReservation = ({match, user, makeReservation, location}) => {
-  const [reservation, setReservation] = useState({ start_date: '', end_date: '', notes: '', user_id: user.user.id, campground_id: match.params.id, title: location.state.title, price: location.state.price})
+  const [reservation, setReservation] = useState({ start_date: '', end_date: '', notes: '', user_id: user.id, campground_id: match.params.id, title: location.state.title, price: location.state.price})
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    makeReservation(user.user.id,reservation)
-    setReservation({start_date: '', end_date: '', notes: '', user_id: user.user.id, campground_id: match.params.id, title: location.state.title, price: location.state.price})
+    makeReservation(user.id,reservation)
+    setReservation({start_date: '', end_date: '', notes: '', user_id: user.id, campground_id: match.params.id, title: location.state.title, price: location.state.price})
   }
 
   return(
@@ -27,14 +27,12 @@ const MakeReservation = ({match, user, makeReservation, location}) => {
         >
           <SemanticDatepicker
             label="Start Date"
-            autoFocus
             name="start_date"
             value={reservation.start_date}
             onChange={(e, { value }) => setReservation({...reservation, start_date: value})}
           /><br/>
           <SemanticDatepicker
             label="End Date"
-            autoFocus
             name="end_date"
             value={reservation.end_date}
             onChange={(e, { value }) => setReservation({...reservation, end_date: value})}

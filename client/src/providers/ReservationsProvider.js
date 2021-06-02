@@ -14,9 +14,18 @@ const ReservationProvider = ({ children }) => {
     .catch( err => console.log(err))
   }
 
+  const cancelRes = (user_id, id) => {
+    axios.delete(`/api/users/${user_id}/reservations/${id}`)
+      .then( res => {
+        setReservations(reservations.filter((reservation) => reservation.id !== id))
+      })
+      .catch( err => console.log(err))
+  }
+
   return(
     <ReservationContext.Provider value={{
-      makeReservation
+      makeReservation,
+      cancelRes
     }}>
       { children }
     </ReservationContext.Provider>

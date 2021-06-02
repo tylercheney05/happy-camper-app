@@ -70,10 +70,15 @@ const Campground = ({ location }) => {
       <Container>
         <div style={{textAlign: 'center', lineHeight: '0'}}>
           <h1>{location.state.name}</h1>
-          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line1}</h5>
-          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line2}</h5>
-          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line3}</h5>
-          <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}  {location.state.addresses[0].postalCode}</h5>
+          { location.state.addresses.lenghth > 0 ? 
+            <>
+            <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line1}</h5>
+            <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line2}</h5>
+            <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].line3}</h5>
+            <h5 style={{lineHeight: '0'}}>{location.state.addresses[0].city}, {location.state.addresses[0].stateCode}  {location.state.addresses[0].postalCode}</h5>
+            </>
+            : ''
+          }
         </div>
         <Segment>
           <h3>Description</h3>
