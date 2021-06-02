@@ -9,5 +9,4 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :reservations, dependent: :destroy
-  has_many :campgrounds, through: :reservations
 end
