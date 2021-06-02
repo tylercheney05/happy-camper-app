@@ -22,6 +22,8 @@ const Map = ({ location, zoomLevel, campgrounds }) => {
     </div>
   );
 
+  const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+
   const renderMarkers = () => {
     return campgrounds.map( campground => (
       <Marker
@@ -36,7 +38,7 @@ const Map = ({ location, zoomLevel, campgrounds }) => {
   return(
     <div className="google-map">
       <GoogleMap
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: API_KEY }}
         center={{ lat: 41.850033, lng: -87.6500523 }}
         zoom={4}
       >
