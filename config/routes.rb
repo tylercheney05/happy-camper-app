@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get '/reservations/:campground_id', to: 'campgrounds#get_campground'
   resources :parks
   # resources :campgrounds
+  get '*other', to: 'static#index'
 end
