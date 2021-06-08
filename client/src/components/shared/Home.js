@@ -8,73 +8,69 @@ import camp4 from "../images/camp4.jpg";
 
 const Home = (props) => {
   const [campgroundValue, setCampgroundValue] = useState('')
+  const [latLong, setLatLong] = useState(['',''])
 
   const options = [
-    {key: 'al', text: 'Alabama', value: 'AL'},
-    {key: 'ak', text: 'Alaska', value: 'AK'},
-    {key: 'as', text: 'American Samoa', value: 'AS'},
-    {key: 'az', text: 'Arizona', value: 'AZ'},
-    {key: 'ar', text: 'Arkansas', value: 'AR'},
-    {key: 'ca', text: 'California', value: 'CA'},
-    {key: 'co', text: 'Colorado', value: 'CO'},
-    {key: 'ct', text: 'Connecticut', value: 'CT'},
-    {key: 'de', text: 'Delaware', value: 'DE'},
-    {key: 'dc', text: 'District of Columbia', value: 'DC'},
-    {key: 'fm', text: 'Federated States Of Micronesia', value: 'FM'},
-    {key: 'fl', text: 'Florida', value: 'FL'},
-    {key: 'ga', text: 'Georgia', value: 'GA'},
-    {key: 'gu', text: 'Guam', value: 'GU'},
-    {key: 'hi', text: 'Hawaii', value: 'HI'},
-    {key: 'id', text: 'Idaho', value: 'ID'},
-    {key: 'il', text: 'Illinois', value: 'IL'},
-    {key: 'in', text: 'Indiana', value: 'IN'},
-    {key: 'ia', text: 'Iowa', value: 'IA'},
-    {key: 'ks', text: 'Kansas', value: 'KS'},
-    {key: 'ky', text: 'Kentucky', value: 'KY'},
-    {key: 'la', text: 'Louisiana', value: 'LA'},
-    {key: 'me', text: 'Maine', value: 'ME'},
-    {key: 'mh', text: 'Marshall Islands', value: 'MH'},
-    {key: 'md', text: 'Maryland', value: 'MD'},
-    {key: 'ma', text: 'Massachusetts', value: 'MA'},
-    {key: 'mi', text: 'Michigan', value: 'MI'},
-    {key: 'mn', text: 'Minnesota', value: 'MN'},
-    {key: 'ms', text: 'Mississippi', value: 'MS'},
-    {key: 'mo', text: 'Missouri', value: 'MO'},
-    {key: 'mt', text: 'Montana', value: 'MT'},
-    {key: 'ne', text: 'Nebraska', value: 'NE'},
-    {key: 'nv', text: 'Nevada', value: 'NV'},
-    {key: 'nh', text: 'New Hampshire', value: 'NH'},
-    {key: 'nj', text: 'New Jersey', value: 'NJ'},
-    {key: 'nm', text: 'New Mexico', value: 'NM'},
-    {key: 'ny', text: 'New York', value: 'NY'},
-    {key: 'nc', text: 'North Carolina', value: 'NC'},
-    {key: 'nd', text: 'North Dakota', value: 'ND'},
-    {key: 'mp', text: 'Northern Mariana Islands', value: 'MP'},
-    {key: 'oh', text: 'Ohio', value: 'OH'},
-    {key: 'ok', text: 'Oklahoma', value: 'OK'},
-    {key: 'or', text: 'Oregon', value: 'OR'},
-    {key: 'pw', text: 'Palau', value: 'PW'},
-    {key: 'pa', text: 'Pennsylvania', value: 'PA'},
-    {key: 'pr', text: 'Puerto Rico', value: 'PR'},
-    {key: 'ri', text: 'Rhode Island', value: 'RI'},
-    {key: 'sc', text: 'South Carolina', value: 'SC'},
-    {key: 'sd', text: 'South Dakota', value: 'SD'},
-    {key: 'tn', text: 'Tennessee', value: 'TN'},
-    {key: 'tx', text: 'Texas', value: 'TX'},
-    {key: 'ut', text: 'Utah', value: 'UT'},
-    {key: 'vt', text: 'Vermont', value: 'VT'},
-    {key: 'vi', text: 'Virgin Islands', value: 'VI'},
-    {key: 'va', text: 'Virginia', value: 'VA'},
-    {key: 'wa', text: 'Washington', value: 'WA'},
-    {key: 'wv', text: 'West Virginia', value: 'WV'},
-    {key: 'wi', text: 'Wisconsin', value: 'WI'},
-    {key: 'wy', text: 'Wyoming', value: 'WY'} 
+    {key: 'al', text: 'Alabama', value: 'AL', lat: 32.318231, long: -86.902298},
+    {key: 'ak', text: 'Alaska', value: 'AK', lat: 63.588753, long: -154.493062},
+    {key: 'az', text: 'Arizona', value: 'AZ', lat: 	34.048928, long: -111.093731},
+    {key: 'ar', text: 'Arkansas', value: 'AR', lat: 35.20105, long: -91.831833},
+    {key: 'ca', text: 'California', value: 'CA', lat: 36.778261, long: -119.417932},
+    {key: 'co', text: 'Colorado', value: 'CO', lat: 39.550051, long: -105.782067},
+    {key: 'ct', text: 'Connecticut', value: 'CT', lat: 41.603221, long: -73.087749},
+    {key: 'de', text: 'Delaware', value: 'DE', lat: 38.910832, long: -75.52767},
+    {key: 'dc', text: 'District of Columbia', value: 'DC', lat: 38.905985, long: -77.033418},
+    {key: 'fl', text: 'Florida', value: 'FL', lat: 27.664827, long: -81.515754},
+    {key: 'ga', text: 'Georgia', value: 'GA', lat: 32.157435, long: -82.907123},  
+    {key: 'hi', text: 'Hawaii', value: 'HI', lat: 19.898682, long: -155.665857},
+    {key: 'id', text: 'Idaho', value: 'ID', lat: 44.068202, long: -114.742041},
+    {key: 'il', text: 'Illinois', value: 'IL', lat: 40.633125, long: -89.398528},
+    {key: 'in', text: 'Indiana', value: 'IN', lat: 40.551217, long: -85.602364},
+    {key: 'ia', text: 'Iowa', value: 'IA', lat: 41.878003, long: -93.097702},
+    {key: 'ks', text: 'Kansas', value: 'KS', lat: 39.011902, long: -98.484246},
+    {key: 'ky', text: 'Kentucky', value: 'KY', lat: 37.839333, long: -84.270018},
+    {key: 'la', text: 'Louisiana', value: 'LA', lat: 31.244823, long: -92.145024},
+    {key: 'me', text: 'Maine', value: 'ME', lat: 45.253783, long: -69.445469},
+    {key: 'md', text: 'Maryland', value: 'MD', lat: 39.045755, long: -76.641271},
+    {key: 'ma', text: 'Massachusetts', value: 'MA', lat: 42.407211, long: -71.382437},
+    {key: 'mi', text: 'Michigan', value: 'MI', lat: 44.314844, long: -85.602364},
+    {key: 'mn', text: 'Minnesota', value: 'MN', lat: 46.729553, long: -94.6859},
+    {key: 'ms', text: 'Mississippi', value: 'MS', lat: 32.354668, long: -89.398528},
+    {key: 'mo', text: 'Missouri', value: 'MO', lat: 37.964253, long: -91.831833},
+    {key: 'mt', text: 'Montana', value: 'MT', lat: 46.879682, long: -110.362566},
+    {key: 'ne', text: 'Nebraska', value: 'NE', lat: 41.492537, long: -99.901813},
+    {key: 'nv', text: 'Nevada', value: 'NV', lat: 38.80261, long: -116.419389},
+    {key: 'nh', text: 'New Hampshire', value: 'NH', lat: 43.193852, long: -71.572395},
+    {key: 'nj', text: 'New Jersey', value: 'NJ', lat: 40.058324, long: -74.405661},
+    {key: 'nm', text: 'New Mexico', value: 'NM', lat: 34.97273, long: -105.032363},
+    {key: 'ny', text: 'New York', value: 'NY', lat: 43.299428, long: -74.217933},
+    {key: 'nc', text: 'North Carolina', value: 'NC', lat: 35.759573, long: -79.0193},
+    {key: 'nd', text: 'North Dakota', value: 'ND', lat: 47.551493, long: -101.002012},
+    {key: 'oh', text: 'Ohio', value: 'OH', lat: 40.417287, long: -82.907123},
+    {key: 'ok', text: 'Oklahoma', value: 'OK', lat: 35.007752	, long: -97.092877},
+    {key: 'or', text: 'Oregon', value: 'OR', lat: 43.804133, long: -120.554201},
+    {key: 'pa', text: 'Pennsylvania', value: 'PA', lat: 41.203322, long: -77.194525},
+    {key: 'pr', text: 'Puerto Rico', value: 'PR', lat: 18.220833, long: -66.590149},
+    {key: 'ri', text: 'Rhode Island', value: 'RI', lat: 41.580095, long: -71.477429},
+    {key: 'sc', text: 'South Carolina', value: 'SC', lat: 33.836081, long: -81.163725},
+    {key: 'sd', text: 'South Dakota', value: 'SD', lat: 43.969515, long: -99.901813},
+    {key: 'tn', text: 'Tennessee', value: 'TN', lat: 35.517491, long: -86.580447},
+    {key: 'tx', text: 'Texas', value: 'TX', lat: 31.968599, long: -99.901813},
+    {key: 'ut', text: 'Utah', value: 'UT', lat: 39.32098, long: -111.093731},
+    {key: 'vt', text: 'Vermont', value: 'VT', lat: 44.558803, long: -72.577841},
+    {key: 'va', text: 'Virginia', value: 'VA', lat: 37.431573, long: -78.656894},
+    {key: 'wa', text: 'Washington', value: 'WA', lat: 47.751074, long: -120.740139},
+    {key: 'wv', text: 'West Virginia', value: 'WV', lat: 38.597626, long: -80.454903},
+    {key: 'wi', text: 'Wisconsin', value: 'WI', lat: 43.78444, long: -88.787868},
+    {key: 'wy', text: 'Wyoming', value: 'WY', lat: 43.075968, long: -107.290284} 
   ];
 
     const handleSubmit = (e) => {
       e.preventDefault()
       setCampgroundValue('')
+      setLatLong()
     }
+
       return (
         <Container style={{width: '100%'}}>
           {/* <div>
@@ -118,7 +114,10 @@ const Home = (props) => {
                 }}
               />
               <Link to={{
-                pathname: `/campgrounds/${campgroundValue}`
+                pathname: `/campgrounds/${campgroundValue}`,
+                state: {
+                  stateValues: options
+                }
               }}>
                 <Button 
                   type="submit"

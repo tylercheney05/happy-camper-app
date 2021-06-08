@@ -6,17 +6,13 @@ import CampgroundList from './CampgroundList'
 import CampgroundForm from './CampgroundForm'
 import Map from '../map/Map'
 
-const Campgrounds = ({props, match}) => {
+const Campgrounds = ({props, match, location}) => {
   const [campgrounds, setCampgrounds] = useState([])
-  
-  // useEffect ( () => {
-  //   axios.get('/api/campgrounds')
-  //     .then( res => {
-  //       setCampgrounds(res.data)
-  //     })
-  // }, [])
+  // const [lat, setLat] = useState('')
 
-  const location = {
+  console.log(location.state.stateValues.filter(state => state.value === match.params.state_code)[0].lat)
+
+  const mapLocation = {
     address: '1600 Amphitheatre Parkway, Mountain View, california.',
     lat: 37.42216,
     lng: -122.08427,
@@ -28,20 +24,6 @@ const Campgrounds = ({props, match}) => {
       setCampgrounds(res.data.data)
     })
   }, [])
-
-  // const updateCampground = (id, campground) => {
-  //   // TODO make api call to update todo
-  //   // TODO update state
-  //   axios.put(`/api/campground/${id}`, { campground })
-  //     .then( res => {
-  //       const campgrounds = this.state.campgrounds.map( c => {
-  //         if (c.id === id)
-  //           return res.data
-  //         return c;
-  //       });
-  //       this.setState({ campgrounds })
-  //     })
-  // }
 
   const deleteCampground = (id) => {
     axios.delete(`/api/campgrounds/${id}`)
@@ -68,7 +50,12 @@ const Campgrounds = ({props, match}) => {
             </List>
           </Grid.Column>
           <Grid.Column width={10} style={{position: 'fixed', right: '0'}}>
-            <Map location={location} zoomLevel={17} campgrounds={campgrounds}/>
+            <Map 
+              location={mapLocation} 
+              zoomLevel={17} 
+              campgrounds={campgrounds}
+              lat={location.state.stateValues.filter(state => state.value === match.params.state_code)[0].lat}
+              long={location.state.stateValues.filter(state => state.value === match.params.state_code)[0].long}/>
           </Grid.Column>
         </Grid>
       </>
